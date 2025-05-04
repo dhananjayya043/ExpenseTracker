@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    
+    <div class="container">
+        <div class="welcome-message">
+            <h2>Welcome to Expense Tracker</h2>
+            <p>Track your expenses easily and efficiently.</p>
+            
+            <div sec:authorize="!isAuthenticated()">
+                <p>Please <a th:href="@{/auth/login}">login</a> or <a th:href="@{/auth/register}">register</a> to get started.</p>
+            </div>
+            
+            <div sec:authorize="isAuthenticated()">
+                <p>Go to your <a th:href="@{/expenses}">expense dashboard</a> to manage your expenses.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
